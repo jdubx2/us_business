@@ -44,3 +44,12 @@
 	.grid path {
 		  stroke-width: 0;
 	}
+
+	#button_div {
+		margin: auto;
+		width: 50%;
+	}
+	#refresh {
+		margin-left: 40%;
+		margin-right: 40%;
+	}

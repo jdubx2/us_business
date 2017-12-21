@@ -10,6 +10,8 @@ ui <- fluidPage(
     tags$script(src="d3_tip.js"),
     tags$link(rel="stylesheet", type="text/css", href="styles.css")
   ),
+  div(id = 'button_div',
+      actionButton('refresh','Reset')),
   div(id = "div_bubble",
       tags$script(src="bubble.js"))
 )

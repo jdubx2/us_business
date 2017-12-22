@@ -34,6 +34,20 @@ var tool_tip = d3.tip()
                         '<br># Establishments: ' + f(d[1]) + '<br># Employees: ' + f(d[3]) +
                         '<br>Annual Payroll ($1K): ' + f(d[2]) + '</center>'; });
 
+var hide_labs = function(d,i){
+  svg.selectAll('.bublab')
+  .transition()
+  .duration(10)
+  .style('font-size', '0px');
+}
+
+var show_labs = function(d,i){
+  svg.selectAll('.bublab')
+  .transition()
+  .duration(10)
+  .style('font-size', '8px');
+}
+
 var svg = d3.select('#div_bubble')
   .append('svg')
     .attr('id', 'svg_bubble')
@@ -68,8 +82,6 @@ Shiny.addCustomMessageHandler("init",
 
     var ntype = [];
     data.forEach(function(d,i) {ntype.push(d['n_type']);});
-
-    console.log(ntype);
 
     var xRange = d3.extent(nof);
     var yRange = d3.extent(noe);
@@ -123,15 +135,25 @@ Shiny.addCustomMessageHandler("init",
       .attr('cy', function(d,i) {return y(noe[i]);})
       .attr('r', 0)
       .style('fill', function(d,i) {return color(apr[i]);})
-      .attr('fill-opacity', 0.7)                          //firms,estabs,payroll,empls,desc
+      .attr('fill-opacity', 0.7)
+      .style("stroke-width", ".005em")
+      .attr('stroke', function(d,i) {return color(apr[i]);}) //firms,estabs,payroll,empls,desc
         .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
+                      hide_labs();
                       d3.select(this)
-                      //.style("stroke", "black")
+                      //.transition()
+                      //.duration(50)
+                      //.ease(d3.easeExp)
+                      .style("stroke-width", ".1em")
                       .attr("fill-opacity", 1);})
         .on('mouseout', function(d,i) {tool_tip.hide();
+                      show_labs();
 										  d3.select(this)
-											.style("stroke-width", ".03em")
-											.attr("fill-opacity", .6);})
+                      //.transition()
+                      //.duration(50)
+                      //.ease(d3.easeExp)
+                      .style("stroke-width", ".005em")
+											.attr("fill-opacity", .7);})
 				.on('click', function(d,i) {var bubble_click = [prnt[i],ntype[i]];
                       bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
 											Shiny.onInputChange("bubble_click", bubble_click); })
@@ -139,6 +161,20 @@ Shiny.addCustomMessageHandler("init",
           .duration(1500)
           .ease(d3.easeCircle)
           .attr('r', function(d,i) {return size(empl[i]);});
+
+    svg.selectAll('bublab')
+      .data(desc)
+      .enter().append("text")
+        .attr('class', 'bublab')
+        .attr('y', function(d,i) {return y(noe[i]) - size(empl[i])*1.25;})
+        .attr('x', function(d,i) {return x(nof[i]) - size(empl[i])*1.25;})
+        .style('font-size', '0px')
+        .style('fill', '#BEBEBE')
+        .text(function(d,i) {return d;})
+        .transition()
+        .duration(500)
+        .delay(1000)
+        .style('font-size', '8px');
 
     svg.append("text")
       .attr('transform', 'rotate(-90)')
@@ -231,6 +267,12 @@ Shiny.addCustomMessageHandler("drill_down",
   			  .tickSize(-width)
   			  .tickFormat(""));
 
+      svg.selectAll('.bublab')
+        .transition()
+        .duration(500)
+        .attr('fill-opacity', 0)
+        .remove();
+
       svg.selectAll('.bubble:not(#' + parent_select + ')')
         .transition()
         .duration(1600)
@@ -243,6 +285,7 @@ Shiny.addCustomMessageHandler("drill_down",
         .duration(1600)
         .ease(d3.easeCircle)
         .attr('fill-opacity', 0)
+        .attr('stroke-opacity', 0)
         .attr('r', function(d) {return d3.select(this).attr('r')*10;})
         .remove()
 
@@ -256,22 +299,49 @@ Shiny.addCustomMessageHandler("drill_down",
         .attr('r', 0)
         .style('fill', function(d,i) {return color(apr[i]);})
         .attr('fill-opacity', 0.7)
-          .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
-                        d3.select(this)
-                        .attr("fill-opacity", 1);})
-          .on('mouseout', function(d,i) {tool_tip.hide();
-                        d3.select(this)
-                        .attr("fill-opacity", .6);})
-          .on('click', function(d,i) {var bubble_click = [prnt[i],ntype[i]];
+        .style("stroke-width", ".005em")
+        .attr('stroke', function(d,i) {return color(apr[i]);}) //firms,estabs,payroll,empls,desc
+        .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
+                      hide_labs()
+                      d3.select(this)
+                      //.transition()
+                      //.duration(50)
+                      //.ease(d3.easeExp)
+                      .style("stroke-width", ".1em")
+                      .attr("fill-opacity", 1);})
+        .on('mouseout', function(d,i) {tool_tip.hide();
+                      show_labs();
+										  d3.select(this)
+                      //.transition()
+                      //.duration(50)
+                      //.ease(d3.easeExp)
+                      .style("stroke-width", ".005em")
+											.attr("fill-opacity", .7);})
+          .on('click', function(d,i) {if (ntype[i] != 6){
+                        var bubble_click = [prnt[i],ntype[i]]; console.log(bubble_click);
                         bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
-                        Shiny.onInputChange("bubble_click", bubble_click); })
+                        Shiny.onInputChange("bubble_click", bubble_click); }})
         .transition()
           .duration(1600)
           .delay(400)
-          .ease(d3.easeCircle)
+          .ease(d3.easeBounce)
           .attr('r', function(d,i) {return size(empl[i]);})
           .attr('cx', function(d,i) {return x(d);})
           .attr('cy', function(d,i) {return y(noe[i]);});
+
+        svg.selectAll('bublab')
+          .data(desc)
+          .enter().append("text")
+            .attr('class', 'bublab')
+            .attr('y', function(d,i) {return y(noe[i]) - size(empl[i])*1.25;})
+            .attr('x', function(d,i) {return x(nof[i]) - size(empl[i])*1.25;})
+            .style('font-size', '0px')
+            .style('fill', '#BEBEBE')
+            .text(function(d,i) {return d;})
+            .transition()
+            .duration(500)
+            .delay(1500)
+            .style('font-size', '8px');
 
         svg.selectAll(".tick")
         .each(function (d) {
@@ -350,6 +420,8 @@ Shiny.addCustomMessageHandler("drill_down",
           .attr('r',0)
           .remove()
 
+        svg.selectAll('.bublab').remove();
+
         svg.selectAll('bubble')
           .data(nof)
           .enter().append("circle")
@@ -360,12 +432,24 @@ Shiny.addCustomMessageHandler("drill_down",
           .attr('r', 0)
           .style('fill', function(d,i) {return color(apr[i]);})
           .attr('fill-opacity', 0.7)
-            .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
-                          d3.select(this)
-                          .attr("fill-opacity", 1);})
-            .on('mouseout', function(d,i) {tool_tip.hide();
-                          d3.select(this)
-                          .attr("fill-opacity", .6);})
+          .style("stroke-width", ".005em")
+          .attr('stroke', function(d,i) {return color(apr[i]);}) //firms,estabs,payroll,empls,desc
+          .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
+                        hide_labs()
+                        d3.select(this)
+                        //.transition()
+                        //.duration(50)
+                        //.ease(d3.easeExp)
+                        .style("stroke-width", ".1em")
+                        .attr("fill-opacity", 1);})
+          .on('mouseout', function(d,i) {tool_tip.hide();
+                        show_labs()
+  										  d3.select(this)
+                        //.transition()
+                        //.duration(50)
+                        //.ease(d3.easeExp)
+                        .style("stroke-width", ".005em")
+  											.attr("fill-opacity", .7);})
             .on('click', function(d,i) {var bubble_click = [prnt[i],ntype[i]];
                           bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
                           Shiny.onInputChange("bubble_click", bubble_click); })
@@ -374,6 +458,20 @@ Shiny.addCustomMessageHandler("drill_down",
             .delay(400)
             .ease(d3.easeElastic)
             .attr('r', function(d,i) {return size(empl[i]);});
+
+        svg.selectAll('bublab')
+          .data(desc)
+          .enter().append("text")
+            .attr('class', 'bublab')
+            .attr('y', function(d,i) {return y(noe[i]) - size(empl[i])*1.25;})
+            .attr('x', function(d,i) {return x(nof[i]) - size(empl[i])*1.25;})
+            .style('font-size', '0px')
+            .style('fill', '#BEBEBE')
+            .text(function(d,i) {return d;})
+            .transition()
+            .duration(500)
+            .delay(1000)
+            .style('font-size', '8px');
 
           svg.selectAll(".tick")
           .each(function (d) {

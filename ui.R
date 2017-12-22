@@ -11,9 +11,9 @@ ui <- fluidPage(
     tags$script(src ="d3-scale-chromatic.v1.min.js"),
     tags$link(rel="stylesheet", type="text/css", href="styles.css")
   ),
-  div(id = 'button_div',
-      actionButton('refresh','Reset')),
+  # div(id = 'button_div',
+  #     actionButton('refresh','Reset')),
   div(id = "div_bubble",
-      tags$script(src="bubble.js")),
-  verbatimTextOutput("test")
+      tags$script(src="bubble.js"))
+  #,verbatimTextOutput("test")
 )

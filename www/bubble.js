@@ -1,4 +1,4 @@
-var margin = {top: 20, right:20, bottom: 60, left: 60},
+var margin = {top: 100, right:20, bottom: 60, left: 60},
   width = $(window).width() * .9 - margin.left - margin.right,
   height = $(window).height() * .9 - margin.top - margin.bottom
 
@@ -56,6 +56,85 @@ var svg = d3.select('#div_bubble')
     .append('g')
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
       .attr('id', 'g_bubble')
+
+var header = d3.select('#svg_bubble')
+  .append('g')
+    .attr('id', 'g_header')
+    .attr('transform', 'translate(' + margin.left + ',' + 0 + ')');
+
+  //refresh button
+  header.append('g')
+    .attr('id', 'g_refresh_btn')
+    .attr('transform', 'translate(' + (width - margin.left - 7) + ',' + (margin.top - 50) + ')')
+    .append('rect')
+      .attr('id', 'rb_rect')
+      .attr('width', 65)
+      .attr('height', 35)
+      .attr('rx', 7)
+      .attr('ry', 7)
+      .attr('fill-opacity', 0.7)
+      .style('fill','#E8E8E8')
+      .style('stroke', '#87CEFA')
+      .style("stroke-width", ".005em")
+      .style('cursor', 'pointer')
+      .on('mouseover', function(d,i) {
+                    d3.select(this)
+                    .style("stroke-width", ".1em")
+                    .style("fill-opacity", 0.85);})
+      .on('mouseout', function(d,i) {
+                    d3.select(this)
+                    .style("stroke-width", ".005em")
+                    .style("fill-opacity", 0.7);})
+      .on('click', function(d,i) {
+                    d3.select(this)
+                    .style("fill-opacity", 1);
+                    Shiny.onInputChange("refresh",Math.random()); });
+
+    var btn_txt_in = function(){
+      d3.selectAll('#rb_rect')
+        .style("stroke-width", ".1em")
+        .style("fill-opacity", 0.85);};
+
+    var btn_txt_out = function(){
+      d3.selectAll('#rb_rect')
+        .style("stroke-width", ".005em")
+        .style("fill-opacity", .7);};
+
+    var btn_txt_clk = function(){
+      d3.selectAll('#rb_rect')
+        .style("fill-opacity", 1);};
+
+    d3.select('#g_refresh_btn')
+      .append('text')
+        .attr('x', 13)
+        .attr('y', 22)
+        .style('font-size', '14px')
+        .style('fill', '#000000')
+        .style('font-weight', 'bold')
+        .style('cursor', 'pointer')
+        .text('Reset')
+        .on('mouseover', function() {btn_txt_in();})
+        .on('mouseout', function() {btn_txt_out();})
+        .on('click', function() {btn_txt_clk();
+            Shiny.onInputChange("refresh",Math.random());});
+
+    //header text
+    var header_txt = header.append('g')
+      .attr('id', 'g_header_txt');
+
+    header_txt.append('text')
+        .attr('y', 55)
+        .attr('x',1)
+        .style('font-size', '16px')
+        .style('fill', '#BEBEBE')
+        .style('font-weight', 'bold')
+        .text('Top Level Category:');
+    header_txt.append('text')
+        .attr('y', 80)
+        .style('font-size', '16px')
+        .style('fill', '#BEBEBE')
+        .style('font-weight', 'bold')
+        .text('Sub Level Category:');
 
 Shiny.addCustomMessageHandler("init",
   function(data){
@@ -185,12 +264,12 @@ Shiny.addCustomMessageHandler("init",
       .style('fill', '#BEBEBE')
       .text('Number of Establishments');
 
-      svg.append("text")
-        .attr('transform', 'translate(' + (width/2) + ' ,' +
-                            (height + margin.top + 25) + ')')
-        .style('text-anchor','middle')
-        .style('fill', '#BEBEBE')
-        .text('Number of Firms');
+    svg.append("text")
+      .attr('transform', 'translate(' + (width/1.95) + ' ,' +
+                          (height + 40) + ')')
+      .style('text-anchor','middle')
+      .style('fill', '#BEBEBE')
+      .text('Number of Firms');
 
       svg.selectAll(".tick")
       .each(function (d) {
@@ -339,8 +418,8 @@ Shiny.addCustomMessageHandler("drill_down",
             .style('fill', '#BEBEBE')
             .text(function(d,i) {return d;})
             .transition()
-            .duration(500)
-            .delay(1500)
+            .duration(400)
+            .delay(1600)
             .style('font-size', '8px');
 
         svg.selectAll(".tick")

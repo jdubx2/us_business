@@ -1,4 +1,4 @@
-var margin = {top: 100, right:20, bottom: 60, left: 60},
+var margin = {top: 100, right:20, bottom: 50, left: 60},
   width = $(window).width() * .9 - margin.left - margin.right,
   height = $(window).height() * .9 - margin.top - margin.bottom
 
@@ -52,7 +52,7 @@ var svg = d3.select('#div_bubble')
   .append('svg')
     .attr('id', 'svg_bubble')
     .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.left)
+    .attr('height', height + margin.top + margin.bottom)
     .append('g')
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
       .attr('id', 'g_bubble')
@@ -122,19 +122,36 @@ var header = d3.select('#svg_bubble')
     var header_txt = header.append('g')
       .attr('id', 'g_header_txt');
 
+
     header_txt.append('text')
-        .attr('y', 55)
-        .attr('x',1)
-        .style('font-size', '16px')
+        .attr('y', 40)
+        .style('font-size', '15px')
         .style('fill', '#BEBEBE')
         .style('font-weight', 'bold')
-        .text('Top Level Category:');
+        .style('text-decoration', 'underline')
+        .text('NAICS Category');
+    header_txt.append('text')
+        .attr('y', 60)
+        .attr('x',1)
+        .style('font-size', '15px')
+        .style('fill', '#BEBEBE')
+        //.style('font-weight', 'bold')
+        .text('Top Level:');
     header_txt.append('text')
         .attr('y', 80)
-        .style('font-size', '16px')
+        .style('font-size', '15px')
         .style('fill', '#BEBEBE')
-        .style('font-weight', 'bold')
-        .text('Sub Level Category:');
+        //.style('font-weight', 'bold')
+        .text('Sub Level:');
+
+  // var legend = d3.select('#svg_bubble')
+  //   .append('g')
+  //     .attr('id', 'g_legend')
+  //     .attr('transform', 'translate(' + (margin.left + width / 2.25) + ',' + (height + margin.top + 70) + ')');
+  //
+  // legend.append('circle')
+  //     .attr('r', 30)
+  //     .style('fill', 'coral');
 
 Shiny.addCustomMessageHandler("init",
   function(data){
@@ -171,6 +188,24 @@ Shiny.addCustomMessageHandler("init",
     y.domain([yRange[0] - (yRange[1] - yRange[0])*.1, yRange[1]*1.1]).nice();
     color.domain([cRange[0], cRange[1]*1.25]);
     size.domain([sRange[0], sRange[1]]);
+
+    header_txt.append('text')
+      .attr('id', 'tl_text')
+        .attr('y', 60)
+        .attr('x',86)
+        .style('font-size', '15px')
+        .style('fill', '#BEBEBE')
+        .style('font-weight', 'bold')
+        .text('All');
+
+    header_txt.append('text')
+      .attr('id', 'sl_text')
+        .attr('y', 80)
+        .attr('x',87)
+        .style('font-size', '15px')
+        .style('fill', '#BEBEBE')
+        .style('font-weight', 'bold')
+        .text('All');
 
     svg.append("g")
       .attr("class", "x_axis")
@@ -316,6 +351,28 @@ Shiny.addCustomMessageHandler("drill_down",
       color.domain([cRange[0], cRange[1]*1.25]);
       size.domain([sRange[0], sRange[1]]);
 
+      var tl_lab = [];
+      data.forEach(function(d,i) {tl_lab.push(d['tl_lab']);});
+      var sl_lab = [];
+      data.forEach(function(d,i) {sl_lab.push(d['sl_lab']);});
+
+    //  console.log([tl_lab,sl_lab]);
+
+      header_txt.select('#tl_text')
+        .transition()
+        .delay(400)
+        .duration(1000)
+        .text(tl_lab[0]);
+      //  .attr('fill-opacity', 0);
+        //.remove();
+      header_txt.select('#sl_text')
+        .transition()
+        .delay(400)
+        .duration(1000)
+        .text(sl_lab[0]);
+        //.attr('fill-opacity', 0)
+        //.remove();
+
       svg.select(".x_axis")
 				.transition()
 				.duration(1400)
@@ -407,6 +464,17 @@ Shiny.addCustomMessageHandler("drill_down",
           .attr('r', function(d,i) {return size(empl[i]);})
           .attr('cx', function(d,i) {return x(d);})
           .attr('cy', function(d,i) {return y(noe[i]);});
+          // .duration(800)
+          // .delay(400)
+          // .ease(d3.easeLinear)
+          // .attr('r', function(d,i) {return size(empl[i])/2;})
+          // .attr('cx', function(d,i) {return x(d)/2;})
+          // .attr('cy', function(d,i) {return y(noe[i])/2;})
+          // .duration(800)
+          // .ease(d3.easeBounce)
+          // .attr('r', function(d,i) {return size(empl[i]);})
+          // .attr('cx', function(d,i) {return x(d);})
+          // .attr('cy', function(d,i) {return y(noe[i]);});
 
         svg.selectAll('bublab')
           .data(desc)
@@ -465,6 +533,21 @@ Shiny.addCustomMessageHandler("drill_down",
         y.domain([yRange[0] - (yRange[1] - yRange[0])*.1, yRange[1]*1.1]).nice();
         color.domain([cRange[0], cRange[1]*1.25]);
         size.domain([sRange[0], sRange[1]]);
+
+        header_txt.select('#tl_text')
+          .transition()
+          .delay(400)
+          .duration(1000)
+          .text('All');
+        //  .attr('fill-opacity', 0);
+          //.remove();
+        header_txt.select('#sl_text')
+          .transition()
+          .delay(400)
+          .duration(1000)
+          .text('All');
+          //.attr('fill-opacity', 0)
+          //.remove();
 
         svg.select(".x_axis")
   				.transition()

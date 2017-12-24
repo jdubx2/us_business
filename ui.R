@@ -2,8 +2,6 @@ library(shiny)
 
 ui <- fluidPage(
   
-  titlePanel(''),
-  
   tags$head(
     tags$script(src="https://d3js.org/d3.v4.min.js"),
     tags$script(src="d3-legend.min.js"),

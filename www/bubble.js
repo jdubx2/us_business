@@ -1,4 +1,4 @@
-var margin = {top: 100, right:20, bottom: 50, left: 60},
+var margin = {top: 100, right:20, bottom: 40, left: 60},
   width = $(window).width() * .9 - margin.left - margin.right,
   height = $(window).height() * .9 - margin.top - margin.bottom
 

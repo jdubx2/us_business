@@ -110,7 +110,7 @@ var header = d3.select('#svg_bubble')
 
     d3.select('#g_refresh_btn')
       .append('text')
-        .attr('x', 15)
+        .attr('x', 13)
         .attr('y', 17)
         .style('font-size', '14px')
         .style('fill', '#000000')
@@ -129,7 +129,7 @@ var header = d3.select('#svg_bubble')
 
     header_txt.append('text')
         .attr('y', 40)
-        .style('font-size', '15px')
+        .style('font-size', '12px')
         .style('fill', '#BEBEBE')
         .style('font-weight', 'bold')
         .style('text-decoration', 'underline')
@@ -137,13 +137,12 @@ var header = d3.select('#svg_bubble')
     header_txt.append('text')
         .attr('y', 60)
         .attr('x',1)
-        .style('font-size', '15px')
         .style('fill', '#BEBEBE')
-        //.style('font-weight', 'bold')
+        .style('font-size', '12px')
         .text('Top Level:');
     header_txt.append('text')
         .attr('y', 80)
-        .style('font-size', '15px')
+        .style('font-size', '12px')
         .style('fill', '#BEBEBE')
         //.style('font-weight', 'bold')
         .text('Sub Level:');
@@ -196,8 +195,8 @@ Shiny.addCustomMessageHandler("init",
     header_txt.append('text')
       .attr('id', 'tl_text')
         .attr('y', 60)
-        .attr('x',86)
-        .style('font-size', '15px')
+        .attr('x',65)
+        .style('font-size', '12px')
         .style('fill', '#BEBEBE')
         .style('font-weight', 'bold')
         .text('All');
@@ -205,8 +204,8 @@ Shiny.addCustomMessageHandler("init",
     header_txt.append('text')
       .attr('id', 'sl_text')
         .attr('y', 80)
-        .attr('x',87)
-        .style('font-size', '15px')
+        .attr('x',66)
+        .style('font-size', '12px')
         .style('fill', '#BEBEBE')
         .style('font-weight', 'bold')
         .text('All');
@@ -292,7 +291,7 @@ Shiny.addCustomMessageHandler("init",
         .transition()
         .duration(500)
         .delay(1000)
-        .style('font-size', ($(window).width()/192) +'px');
+        .style('font-size', ($(window).width()/160) + 'px');
 
     svg.append("text")
       .attr('transform', 'rotate(-90)')
@@ -492,7 +491,7 @@ Shiny.addCustomMessageHandler("drill_down",
             .transition()
             .duration(400)
             .delay(1600)
-            .style('font-size', ($(window).width()/192) + 'px');
+            .style('font-size', ($(window).width()/160) + 'px');
 
         svg.selectAll(".tick")
         .each(function (d) {
@@ -637,7 +636,7 @@ Shiny.addCustomMessageHandler("drill_down",
             .transition()
             .duration(500)
             .delay(1000)
-            .style('font-size', ($(window).width()/192) + 'px');
+            .style('font-size', ($(window).width()/160) + 'px');
 
           svg.selectAll(".tick")
           .each(function (d) {

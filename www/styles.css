@@ -20,6 +20,11 @@
 		stroke: #383838;
 	}
 
+	.bublab{
+		fill: white;
+		font-weight: bold;
+	}
+
 	.d3-tip {
       line-height: 1;
       padding: 6px;

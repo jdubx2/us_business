@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="330"
+   height="160"
+   viewBox="0 0 87.312498 42.333348"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="usb_legend_final.svg">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1321-8"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1319-5"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1321"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1319"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="331.39474"
+     inkscape:cy="127.11549"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1536"
+     inkscape:window-height="811"
+     inkscape:window-x="-8"
+     inkscape:window-y="22"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-254.66652)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.07976532px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.41452941"
+       x="15.362971"
+       y="268.1893"
+       id="text833"
+       transform="scale(1.0067372,0.99330789)"><tspan
+         sodipodi:role="line"
+         id="tspan831"
+         x="15.362971"
+         y="268.1893"
+         style="stroke-width:0.41452941">Size</tspan></text>
+    <ellipse
+       class="bubble"
+       id="_62"
+       cx="44.25164"
+       cy="271.07382"
+       style="fill:#15793f;fill-opacity:0.96954316;stroke:#15793f;stroke-width:0.005em"
+       rx="6.8247938"
+       ry="6.7049894" />
+    <ellipse
+       class="bubble"
+       id="_56"
+       cx="44.251652"
+       cy="284.35605"
+       style="fill:#aadc8d;fill-opacity:0.95431471;stroke:#aadc8d;stroke-width:0.005em"
+       rx="4.4223814"
+       ry="4.3447495" />
+    <ellipse
+       class="bubble"
+       id="_81"
+       cx="44.446659"
+       cy="294.06232"
+       style="fill:#eff9b7;fill-opacity:0.98477155;stroke:#eff9b7;stroke-width:0.005em"
+       rx="2.7304268"
+       ry="2.6824961" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.07976532px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.41452944"
+       x="57.10685"
+       y="268.17743"
+       id="text833-1"
+       transform="scale(1.0067372,0.99330789)"><tspan
+         sodipodi:role="line"
+         id="tspan831-4"
+         x="57.10685"
+         y="268.17743"
+         style="stroke-width:0.41452944">Color</tspan></text>
+    <rect
+       style="opacity:0.86199999;vector-effect:none;fill:#000000;fill-opacity:0.98477155;stroke:#000000;stroke-width:0.18562695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.00930236"
+       id="rect871"
+       width="26.079512"
+       height="0.38975152"
+       x="9.4868879"
+       y="267.28409" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.40009832px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23182489"
+       x="54.474422"
+       y="272.88028"
+       id="text833-1-2"
+       transform="scale(1.0012836,0.99871805)"><tspan
+         sodipodi:role="line"
+         id="tspan831-4-8"
+         x="54.474422"
+         y="272.88028"
+         style="stroke-width:0.23182489">Higher Payroll</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.40009832px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23182489"
+       x="54.358185"
+       y="294.8895"
+       id="text833-1-2-1"
+       transform="scale(1.0012836,0.99871805)"><tspan
+         sodipodi:role="line"
+         id="tspan831-4-8-3"
+         x="54.358185"
+         y="294.8895"
+         style="stroke-width:0.23182489">Lower Payroll</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.40009832px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23182489"
+       x="7.0727625"
+       y="272.89853"
+       id="text833-1-2-9"
+       transform="scale(1.0012836,0.99871805)"><tspan
+         sodipodi:role="line"
+         id="tspan831-4-8-4"
+         x="7.0727625"
+         y="272.89853"
+         style="stroke-width:0.23182489">More Employees</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.40009832px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23182489"
+       x="8.1635523"
+       y="294.8895"
+       id="text833-1-2-9-6"
+       transform="scale(1.0012836,0.99871805)"><tspan
+         sodipodi:role="line"
+         id="tspan831-4-8-4-9"
+         x="8.1635523"
+         y="294.8895"
+         style="stroke-width:0.23182489">Less Employees</tspan></text>
+    <rect
+       style="opacity:0.86199999;vector-effect:none;fill:#000000;fill-opacity:0.98477155;stroke:#000000;stroke-width:0.18562695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.00930236"
+       id="rect871-25"
+       width="26.079512"
+       height="0.38975152"
+       x="52.477722"
+       y="267.28409" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.22584262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker1321)"
+       d="m 21.428152,275.4799 v 14.04855"
+       id="path971"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.22584262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker1321-8)"
+       d="m 64.939388,275.39033 v 14.04855"
+       id="path971-3"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

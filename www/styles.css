@@ -1,5 +1,8 @@
 
-	body {background-color: #090F0F;}
+	body {
+		background-color: #090F0F;
+		font-family: "Open Sans", sans-serif;
+	}
 
 	.y_axis text{
 		fill: #BEBEBE;

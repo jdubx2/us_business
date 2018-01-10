@@ -156,6 +156,12 @@ var header = d3.select('#svg_bubble')
   //     .attr('r', 30)
   //     .style('fill', 'coral');
 
+var defs  = svg.append("defs");
+
+var radialGradient = defs.append("radialrGradient")
+  .attr("id", "radial-gradient");
+
+
 Shiny.addCustomMessageHandler("init",
   function(data){
 

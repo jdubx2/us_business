@@ -63,32 +63,47 @@ var header = d3.select('#svg_bubble')
     .attr('id', 'g_header')
     .attr('transform', 'translate(' + margin.left + ',' + 0 + ')');
 
-    // header.append('g')
-    //   .attr('id', 'g_refresh_btn')
-    //   .attr('transform', 'translate(' + (width - margin.left - 7) + ',' + (margin.top - 50) + ')')
-  //refresh button
+// button gradient
+var defs  = svg.append("defs").attr('id', 'rb_defs');
+
+var rbRadial = defs.append('radialGradient')
+  .attr("id", "rb_gradient")
+  // .attr("cx", '.5')
+  // .attr('cy', '.5')
+   .attr('r', '.75');
+
+rbRadial.append("stop")
+  .attr("stop-color", "#D3D3D3")
+  .attr("offset", "0%");
+rbRadial.append("stop")
+  .attr("stop-color", "#BEBEBE")
+  .attr("offset", '40%');
+rbRadial.append("stop")
+  .attr("stop-color", "#808080")
+  .attr("offset", '100%');
+
   svg.append('g')
     .attr('id', 'g_refresh_btn')
-    .attr('transform', 'translate(' + ((width - margin.left) / 2) + ',' + (height + 49 ) + ')')
+    .attr('transform', 'translate(' + ((width - margin.left) / 1.99) + ',' + (height + 49 ) + ')')
     .append('rect')
       .attr('id', 'rb_rect')
       .attr('width', 65)
       .attr('height', 26)
       .attr('rx', 7)
       .attr('ry', 7)
-      .attr('fill-opacity', 0.7)
-      .style('fill','#E8E8E8')
+      .attr('fill-opacity', 0.5)
+      .style('fill','url(#rb_gradient)')
       .style('stroke', '#87CEFA')
       .style("stroke-width", ".005em")
       .style('cursor', 'pointer')
       .on('mouseover', function(d,i) {
                     d3.select(this)
                     .style("stroke-width", ".1em")
-                    .style("fill-opacity", 0.85);})
+                    .style("fill-opacity", .85);})
       .on('mouseout', function(d,i) {
                     d3.select(this)
                     .style("stroke-width", ".005em")
-                    .style("fill-opacity", 0.7);})
+                    .style("fill-opacity", 0.5);})
       .on('click', function(d,i) {
                     d3.select(this)
                     .style("fill-opacity", 1);
@@ -102,7 +117,7 @@ var header = d3.select('#svg_bubble')
     var btn_txt_out = function(){
       d3.selectAll('#rb_rect')
         .style("stroke-width", ".005em")
-        .style("fill-opacity", .7);};
+        .style("fill-opacity", .5);};
 
     var btn_txt_clk = function(){
       d3.selectAll('#rb_rect')
@@ -147,25 +162,13 @@ var header = d3.select('#svg_bubble')
         //.style('font-weight', 'bold')
         .text('Sub Level:');
 
-  // var legend = d3.select('#svg_bubble')
-  //   .append('g')
-  //     .attr('id', 'g_legend')
-  //     .attr('transform', 'translate(' + (margin.left + width / 2.25) + ',' + (height + margin.top + 70) + ')');
-  //
-  // legend.append('circle')
-  //     .attr('r', 30)
-  //     .style('fill', 'coral');
-
-var defs  = svg.append("defs");
-
-var radialGradient = defs.append("radialrGradient")
-  .attr("id", "radial-gradient");
-
+  // for bubble gradient definitions
+  var defs1  = svg.append("defs").attr('id', 'bub_defs1');
+  var defs2  = svg.append("defs").attr('id', 'bub_defs2');
+  var defs3  = svg.append("defs").attr('id', 'bub_defs3');
 
 Shiny.addCustomMessageHandler("init",
   function(data){
-
-    console.log($(window).width());
 
     var apr = [];
     data.forEach(function(d,i) {apr.push(d['APR']);});
@@ -195,7 +198,7 @@ Shiny.addCustomMessageHandler("init",
 
     x.domain([xRange[0] - (xRange[1] - xRange[0])*.1, xRange[1]*1.1]).nice();
     y.domain([yRange[0] - (yRange[1] - yRange[0])*.1, yRange[1]*1.1]).nice();
-    color.domain([cRange[0], cRange[1]*1.25]);
+    color.domain([cRange[0]*.5, cRange[1]*1.5]);
     size.domain([sRange[0], sRange[1]]);
 
     header_txt.append('text')
@@ -249,6 +252,24 @@ Shiny.addCustomMessageHandler("init",
 
     svg.call(tool_tip);
 
+    var gradientRadial = defs1.selectAll("radialGradient")
+      .data(apr).enter()
+      .append('radialGradient')
+      .attr("id", function(d,i){ return "gradient-radial-" + i;})
+      .attr("cx", '.25')
+      .attr('cy', '.25')
+      .attr('r', '.65');
+
+    gradientRadial.append("stop")
+      .attr("stop-color", function(d) {return color(d*.5);})
+      .attr("offset", "0%");
+    gradientRadial.append("stop")
+      .attr("stop-color", function(d) {return color(d);})
+      .attr("offset", "40%");
+    gradientRadial.append("stop")
+      .attr("stop-color", function(d) {return color(d*1.5);})
+      .attr("offset", "100%");
+
     svg.selectAll('bubble')
       .data(nof)
       .enter().append("circle")
@@ -257,10 +278,11 @@ Shiny.addCustomMessageHandler("init",
       .attr('cx', function(d,i) {return x(d);})
       .attr('cy', function(d,i) {return y(noe[i]);})
       .attr('r', 0)
-      .style('fill', function(d,i) {return color(apr[i]);})
-      .attr('fill-opacity', 0.7)
-      .style("stroke-width", ".005em")
-      .attr('stroke', function(d,i) {return color(apr[i]);}) //firms,estabs,payroll,empls,desc
+      // .style('fill', function(d,i) {return color(apr[i]);})
+      .style('fill', function(d,i) {return "url(#gradient-radial-" + i + ")"; })
+      .attr('fill-opacity', 0.9)
+      .style("stroke-width", ".001em")
+      .attr('stroke', function(d,i) {return color(apr[i]*1.5);}) //firms,estabs,payroll,empls,desc
         .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
                       hide_labs();
                       d3.select(this)
@@ -275,8 +297,8 @@ Shiny.addCustomMessageHandler("init",
                       //.transition()
                       //.duration(50)
                       //.ease(d3.easeExp)
-                      .style("stroke-width", ".005em")
-											.attr("fill-opacity", .7);})
+                      .style("stroke-width", ".001em")
+											.attr("fill-opacity", .9);})
 				.on('click', function(d,i) {var bubble_click = [prnt[i],ntype[i]];
                       bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
 											Shiny.onInputChange("bubble_click", bubble_click); })
@@ -357,7 +379,7 @@ Shiny.addCustomMessageHandler("drill_down",
 
       x.domain([xRange[0] - (xRange[1] - xRange[0])*.1, xRange[1]*1.1]).nice();
       y.domain([yRange[0] - (yRange[1] - yRange[0])*.1, yRange[1]*1.1]).nice();
-      color.domain([cRange[0], cRange[1]*1.25]);
+      color.domain([cRange[0]*.5, cRange[1]*1.5]);
       size.domain([sRange[0], sRange[1]]);
 
       var tl_lab = [];
@@ -434,6 +456,49 @@ Shiny.addCustomMessageHandler("drill_down",
         .attr('r', function(d) {return d3.select(this).attr('r')*10;})
         .remove()
 
+      if(ntype[0] == 4){
+
+        $('#bub_defs2').find('*').remove();
+        $('#bub_defs3').find('*').remove();
+
+        var gradientRadial = defs2.selectAll("radialGradient")
+          .data(apr).enter()
+          .append('radialGradient')
+          .attr("id", function(d,i){ return "gradient-radial-" + ntype[0] + "-" + i;})
+          .attr("cx", '.25')
+          .attr('cy', '.25')
+          .attr('r', '.65');
+
+        gradientRadial.append("stop")
+          .attr("stop-color", function(d) {return color(d*.5);})
+          .attr("offset", "0%");
+        gradientRadial.append("stop")
+          .attr("stop-color", function(d) {return color(d);})
+          .attr("offset", "40%");
+        gradientRadial.append("stop")
+          .attr("stop-color", function(d) {return color(d*1.5);})
+          .attr("offset", "100%");
+      } else {
+
+        var gradientRadial = defs3.selectAll("radialGradient")
+          .data(apr).enter()
+          .append('radialGradient')
+          .attr("id", function(d,i){ return "gradient-radial-" + ntype[0] + "-" + i;})
+          .attr("cx", '.25')
+          .attr('cy', '.25')
+          .attr('r', '.65');
+
+        gradientRadial.append("stop")
+          .attr("stop-color", function(d) {return color(d*.5);})
+          .attr("offset", "0%");
+        gradientRadial.append("stop")
+          .attr("stop-color", function(d) {return color(d);})
+          .attr("offset", "40%");
+        gradientRadial.append("stop")
+          .attr("stop-color", function(d) {return color(d*1.5);})
+          .attr("offset", "100%");
+      }
+
       svg.selectAll('bubble')
         .data(nof)
         .enter().append("circle")
@@ -442,10 +507,10 @@ Shiny.addCustomMessageHandler("drill_down",
         .attr('cx', bubble_loc[0])
         .attr('cy', bubble_loc[1])
         .attr('r', 0)
-        .style('fill', function(d,i) {return color(apr[i]);})
-        .attr('fill-opacity', 0.7)
-        .style("stroke-width", ".005em")
-        .attr('stroke', function(d,i) {return color(apr[i]);}) //firms,estabs,payroll,empls,desc
+        .style('fill', function(d,i) {return "url(#gradient-radial-" + ntype[0] + "-" + i + ")"; })
+        .attr('fill-opacity', 0.9)
+        .style("stroke-width", ".001em")
+        .attr('stroke', function(d,i) {return color(apr[i]*1.5);}) //firms,estabs,payroll,empls,desc
         .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
                       hide_labs()
                       d3.select(this)
@@ -460,10 +525,10 @@ Shiny.addCustomMessageHandler("drill_down",
                       //.transition()
                       //.duration(50)
                       //.ease(d3.easeExp)
-                      .style("stroke-width", ".005em")
-											.attr("fill-opacity", .7);})
+                      .style("stroke-width", ".001em")
+											.attr("fill-opacity", .9);})
           .on('click', function(d,i) {if (ntype[i] != 6){
-                        var bubble_click = [prnt[i],ntype[i]]; console.log(bubble_click);
+                        var bubble_click = [prnt[i],ntype[i]];
                         bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
                         Shiny.onInputChange("bubble_click", bubble_click); }})
         .transition()
@@ -540,7 +605,7 @@ Shiny.addCustomMessageHandler("drill_down",
 
         x.domain([xRange[0] - (xRange[1] - xRange[0])*.1, xRange[1]*1.1]).nice();
         y.domain([yRange[0] - (yRange[1] - yRange[0])*.1, yRange[1]*1.1]).nice();
-        color.domain([cRange[0], cRange[1]*1.25]);
+        color.domain([cRange[0]*.5, cRange[1]*1.5]);
         size.domain([sRange[0], sRange[1]]);
 
         header_txt.select('#tl_text')
@@ -601,10 +666,10 @@ Shiny.addCustomMessageHandler("drill_down",
           .attr('cx', function(d,i) {return x(d);})
           .attr('cy', function(d,i) {return y(noe[i]);})
           .attr('r', 0)
-          .style('fill', function(d,i) {return color(apr[i]);})
-          .attr('fill-opacity', 0.7)
-          .style("stroke-width", ".005em")
-          .attr('stroke', function(d,i) {return color(apr[i]);}) //firms,estabs,payroll,empls,desc
+          .style('fill', function(d,i) {return "url(#gradient-radial-" + i + ")"; })
+          .attr('fill-opacity', 0.9)
+          .style("stroke-width", ".001em")
+          .attr('stroke', function(d,i) {return color(apr[i]*1.5);}) //firms,estabs,payroll,empls,desc
           .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
                         hide_labs()
                         d3.select(this)
@@ -619,8 +684,8 @@ Shiny.addCustomMessageHandler("drill_down",
                         //.transition()
                         //.duration(50)
                         //.ease(d3.easeExp)
-                        .style("stroke-width", ".005em")
-  											.attr("fill-opacity", .7);})
+                        .style("stroke-width", ".001em")
+  											.attr("fill-opacity", .9);})
             .on('click', function(d,i) {var bubble_click = [prnt[i],ntype[i]];
                           bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
                           Shiny.onInputChange("bubble_click", bubble_click); })

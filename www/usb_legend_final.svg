@@ -14,7 +14,7 @@
    viewBox="0 0 87.312498 42.333348"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   inkscape:version="0.92.1 r15371"
    sodipodi:docname="usb_legend_final.svg">
   <defs
      id="defs2">
@@ -48,6 +48,72 @@
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
          transform="matrix(-0.8,0,0,-0.8,-10,0)" />
     </marker>
+    <radialGradient
+       gradientTransform="matrix(0.26458333,0,0,0.26458333,-136.66359,258.22989)"
+       gradientUnits="userSpaceOnUse"
+       fy="33.729998"
+       fx="667.90667"
+       id="gradient-radial-12"
+       cx="667.90667"
+       cy="33.729998"
+       r="39.007799">
+      <stop
+         stop-color="rgb(187, 227, 149)"
+         offset="0%"
+         id="stop4581" />
+      <stop
+         stop-color="rgb(56, 157, 85)"
+         offset="40%"
+         id="stop4583" />
+      <stop
+         stop-color="rgb(0, 69, 41)"
+         offset="100%"
+         id="stop4585" />
+    </radialGradient>
+    <radialGradient
+       gradientTransform="matrix(0.26458333,0,0,0.26458333,-59.833504,222.72117)"
+       gradientUnits="userSpaceOnUse"
+       fy="224.53517"
+       fx="383.3685"
+       id="gradient-radial-10"
+       cx="383.3685"
+       cy="224.53517"
+       r="25.279314">
+      <stop
+         stop-color="rgb(238, 248, 181)"
+         offset="0%"
+         id="stop4567" />
+      <stop
+         stop-color="rgb(194, 230, 152)"
+         offset="40%"
+         id="stop4569" />
+      <stop
+         stop-color="rgb(131, 203, 125)"
+         offset="100%"
+         id="stop4571" />
+    </radialGradient>
+    <radialGradient
+       gradientTransform="matrix(0.26458333,0,0,0.26458333,-142.5689,267.17573)"
+       gradientUnits="userSpaceOnUse"
+       fy="93.859825"
+       fx="699.41068"
+       id="gradient-radial-15"
+       cx="699.41068"
+       cy="93.859825"
+       r="15.61071">
+      <stop
+         stop-color="rgb(251, 253, 208)"
+         offset="0%"
+         id="stop4602" />
+      <stop
+         stop-color="rgb(243, 251, 189)"
+         offset="40%"
+         id="stop4604" />
+      <stop
+         stop-color="rgb(232, 246, 175)"
+         offset="100%"
+         id="stop4606" />
+    </radialGradient>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -56,18 +122,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="331.39474"
-     inkscape:cy="127.11549"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="199.38436"
+     inkscape:cy="78.059936"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="px"
-     inkscape:window-width="1536"
-     inkscape:window-height="811"
-     inkscape:window-x="-8"
-     inkscape:window-y="22"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="800"
+     inkscape:window-height="531"
+     inkscape:window-x="987"
+     inkscape:window-y="230"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -76,7 +142,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -97,30 +163,6 @@
          x="15.362971"
          y="268.1893"
          style="stroke-width:0.41452941">Size</tspan></text>
-    <ellipse
-       class="bubble"
-       id="_62"
-       cx="44.25164"
-       cy="271.07382"
-       style="fill:#15793f;fill-opacity:0.96954316;stroke:#15793f;stroke-width:0.005em"
-       rx="6.8247938"
-       ry="6.7049894" />
-    <ellipse
-       class="bubble"
-       id="_56"
-       cx="44.251652"
-       cy="284.35605"
-       style="fill:#aadc8d;fill-opacity:0.95431471;stroke:#aadc8d;stroke-width:0.005em"
-       rx="4.4223814"
-       ry="4.3447495" />
-    <ellipse
-       class="bubble"
-       id="_81"
-       cx="44.446659"
-       cy="294.06232"
-       style="fill:#eff9b7;fill-opacity:0.98477155;stroke:#eff9b7;stroke-width:0.005em"
-       rx="2.7304268"
-       ry="2.6824961" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:6.07976532px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.41452944"
@@ -205,5 +247,26 @@
        d="m 64.939388,275.39033 v 14.04855"
        id="path971-3"
        inkscape:connector-curvature="0" />
+    <circle
+       class="bubble"
+       id="_62-2"
+       cx="44.022919"
+       cy="271.12384"
+       r="7.9375"
+       style="fill:url(#gradient-radial-12);fill-opacity:0.9;stroke:#080c08;stroke-width:0.103;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <circle
+       class="bubble"
+       id="_56-9"
+       cx="44.171902"
+       cy="284.70197"
+       r="5.1434011"
+       style="fill:url(#gradient-radial-10);fill-opacity:0.9;stroke:#080c08;stroke-width:0.103;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <circle
+       class="bubble"
+       id="_81-0"
+       cx="44.072094"
+       cy="293.59805"
+       r="3.1755924"
+       style="fill:url(#gradient-radial-15);fill-opacity:0.9;stroke:#080c08;stroke-width:0.103;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>

@@ -73,13 +73,13 @@ var rbRadial = defs.append('radialGradient')
    .attr('r', '.75');
 
 rbRadial.append("stop")
-  .attr("stop-color", "#D3D3D3")
+  .attr("stop-color", "#F5F5F5")
   .attr("offset", "0%");
 rbRadial.append("stop")
-  .attr("stop-color", "#BEBEBE")
+  .attr("stop-color", "#DCDCDC")
   .attr("offset", '40%');
 rbRadial.append("stop")
-  .attr("stop-color", "#808080")
+  .attr("stop-color", "#C8C8C8")
   .attr("offset", '100%');
 
   svg.append('g')
@@ -280,7 +280,7 @@ Shiny.addCustomMessageHandler("init",
       .attr('r', 0)
       // .style('fill', function(d,i) {return color(apr[i]);})
       .style('fill', function(d,i) {return "url(#gradient-radial-" + i + ")"; })
-      .attr('fill-opacity', 0.9)
+      .attr('fill-opacity', 0.8)
       .style("stroke-width", ".001em")
       .attr('stroke', function(d,i) {return color(apr[i]*1.5);}) //firms,estabs,payroll,empls,desc
         .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
@@ -289,7 +289,7 @@ Shiny.addCustomMessageHandler("init",
                       //.transition()
                       //.duration(50)
                       //.ease(d3.easeExp)
-                      .style("stroke-width", ".1em")
+                      .style("stroke-width", ".005em")
                       .attr("fill-opacity", 1);})
         .on('mouseout', function(d,i) {tool_tip.hide();
                       show_labs();
@@ -298,7 +298,7 @@ Shiny.addCustomMessageHandler("init",
                       //.duration(50)
                       //.ease(d3.easeExp)
                       .style("stroke-width", ".001em")
-											.attr("fill-opacity", .9);})
+											.attr("fill-opacity", .8);})
 				.on('click', function(d,i) {var bubble_click = [prnt[i],ntype[i]];
                       bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
 											Shiny.onInputChange("bubble_click", bubble_click); })
@@ -508,7 +508,7 @@ Shiny.addCustomMessageHandler("drill_down",
         .attr('cy', bubble_loc[1])
         .attr('r', 0)
         .style('fill', function(d,i) {return "url(#gradient-radial-" + ntype[0] + "-" + i + ")"; })
-        .attr('fill-opacity', 0.9)
+        .attr('fill-opacity', 0.8)
         .style("stroke-width", ".001em")
         .attr('stroke', function(d,i) {return color(apr[i]*1.5);}) //firms,estabs,payroll,empls,desc
         .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
@@ -517,7 +517,7 @@ Shiny.addCustomMessageHandler("drill_down",
                       //.transition()
                       //.duration(50)
                       //.ease(d3.easeExp)
-                      .style("stroke-width", ".1em")
+                      .style("stroke-width", ".005em")
                       .attr("fill-opacity", 1);})
         .on('mouseout', function(d,i) {tool_tip.hide();
                       show_labs();
@@ -526,7 +526,7 @@ Shiny.addCustomMessageHandler("drill_down",
                       //.duration(50)
                       //.ease(d3.easeExp)
                       .style("stroke-width", ".001em")
-											.attr("fill-opacity", .9);})
+											.attr("fill-opacity", .8);})
           .on('click', function(d,i) {if (ntype[i] != 6){
                         var bubble_click = [prnt[i],ntype[i]];
                         bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
@@ -667,7 +667,7 @@ Shiny.addCustomMessageHandler("drill_down",
           .attr('cy', function(d,i) {return y(noe[i]);})
           .attr('r', 0)
           .style('fill', function(d,i) {return "url(#gradient-radial-" + i + ")"; })
-          .attr('fill-opacity', 0.9)
+          .attr('fill-opacity', 0.8)
           .style("stroke-width", ".001em")
           .attr('stroke', function(d,i) {return color(apr[i]*1.5);}) //firms,estabs,payroll,empls,desc
           .on('mouseover', function(d,i) {tool_tip.show([nof[i],noe[i],apr[i],empl[i],desc[i]]);
@@ -676,7 +676,7 @@ Shiny.addCustomMessageHandler("drill_down",
                         //.transition()
                         //.duration(50)
                         //.ease(d3.easeExp)
-                        .style("stroke-width", ".1em")
+                        .style("stroke-width", ".005em")
                         .attr("fill-opacity", 1);})
           .on('mouseout', function(d,i) {tool_tip.hide();
                         show_labs()
@@ -685,7 +685,7 @@ Shiny.addCustomMessageHandler("drill_down",
                         //.duration(50)
                         //.ease(d3.easeExp)
                         .style("stroke-width", ".001em")
-  											.attr("fill-opacity", .9);})
+  											.attr("fill-opacity", .8);})
             .on('click', function(d,i) {var bubble_click = [prnt[i],ntype[i]];
                           bubble_loc = [x(d),y(noe[i])]; parent_select = add_under(prnt[i]);
                           Shiny.onInputChange("bubble_click", bubble_click); })

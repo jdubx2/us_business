@@ -12,9 +12,9 @@ ui <- fluidPage(
     tags$link(rel="stylesheet", type="text/css", href="colorbox.css"),
     tags$link(rel="stylesheet", type="text/css", href="//fonts.googleapis.com/css?family=Open+Sans"),
     tags$script('function openColorBox(){
-          $.colorbox({iframe:true, width:"380px", height:"430px", innerHeight:"25px", href: "pop.html", opacity:".7"});
+          $.colorbox({iframe:true, width:"380px", height:"430px", scrolling:false, innerHeight:"25px", href: "pop.html", opacity:".7"});
         }
-        
+
         setTimeout(openColorBox, 2500);'),
   # div(id = 'button_div',
   #     actionButton('refresh','Reset')),
